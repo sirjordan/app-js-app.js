@@ -13,6 +13,9 @@ var app = (function app() {
     };
 
     function load(func) {
+        if(typeof(func) !== 'function')
+            throw new Error('Only functions are allowed to be loaded');
+
         callQueue.push(func);
     };
 
@@ -42,7 +45,6 @@ var appSecurity = (function () {
     };
 })();
 
-
 // cr.js
 (function (app) {
     app = app || new app();
@@ -51,5 +53,5 @@ var appSecurity = (function () {
         console.log(app.security().getToken());
     };
 
-    app.load(cr());
+    app.load(cr);
 })(app);
